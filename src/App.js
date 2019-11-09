@@ -7,45 +7,49 @@ const App = () => {
   const [flipClass, setFlipClass] = useState([]);
   const [selectedNumber, setSelectedNumber] = useState([]);
   const [foundMatch, setFoundMatch] = useState([]);
+  const [moves, setMoves] = useState(0);
   const randomNumber = range => {
     return Math.floor(Math.random() * (range / 2) + 1);
   };
 
   const flip = (e, i) => {
-    setFlipClass(flipClass.concat(i));
-    if (selectedNumber.length === 0) {
-      setSelectedNumber(selectedNumber.concat(e));
-    } else if (!selectedNumber.includes(e)) {
-      setTimeout(() => {
+    if (flipClass.length < 2) {
+      setFlipClass(flipClass.concat(i));
+      if (selectedNumber.length === 0) {
+        setSelectedNumber(selectedNumber.concat(e));
+      } else if (!selectedNumber.includes(e)) {
+        setTimeout(() => {
+          setFlipClass([]);
+          setSelectedNumber([]);
+        }, 2000);
+      } else if (selectedNumber.includes(e)) {
+        setFoundMatch(foundMatch.concat(e));
         setFlipClass([]);
         setSelectedNumber([]);
-      }, 1000);
-    } else if (selectedNumber.includes(e)) {
-      setFoundMatch(foundMatch.concat(e));
-      setFlipClass([]);
-      setSelectedNumber([]);
+      }
+      setMoves(moves + 0.5);
     }
   };
 
   const shuffleCards = range => {
+    setMoves(0);
     let x = [];
-    let i = 1;
-    do {
+    for (let i = 0; i < range; i++) {
       let number = randomNumber(range);
       let find = x.filter(card => card === number);
       while (find.length === 2) {
         number = randomNumber(range);
         find = x.filter(card => card === number);
       }
-      setCards(x.push(number));
-      i++;
-    } while (i <= 16);
+      x.push(number);
+    }
+    console.log(x);
     setCards(x);
   };
-  console.log(selectedNumber);
+  console.log(moves);
   return (
     <div className="App">
-      <button onClick={() => shuffleCards(16)}>Shuffle Cards</button>
+      <button onClick={() => shuffleCards(15)}>Shuffle Cards</button>
       <Cards
         cards={cards}
         flip={flip}
