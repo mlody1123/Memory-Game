@@ -1,11 +1,11 @@
-import React from "react";
-import Card from "./Card";
+import React from 'react'
+import Card from './Card'
 
 const Cards = ({ cards, flip, flipClass, foundMatch }) => {
   return (
-    <div className="container">
+    <div className='container'>
       <h1>Here are component with all cards</h1>
-      <div className="cards-container" style={{ backgroundColor: "lightblue" }}>
+      <div className='cards-container' style={{ backgroundColor: 'lightblue' }}>
         {cards.map((a, i) => (
           <Card
             key={i}
@@ -18,7 +18,7 @@ const Cards = ({ cards, flip, flipClass, foundMatch }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cards;
+export default Cards

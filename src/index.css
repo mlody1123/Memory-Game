@@ -1,6 +1,7 @@
 .cards-container {
   padding: 20px;
-  width: 40%;
+  width: 50vw;
+  max-height: 80vh;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -10,8 +11,8 @@
 .card-container {
   margin: 20px;
   background-color: transparent;
-  width: 150px;
-  height: 200px;
+  width: 100px;
+  height: 150px;
   perspective: 1000px;
 }
 
