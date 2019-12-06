@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Cards from './components/Cards'
 import Statistics from './components/Statistics'
 import './index.css'
@@ -6,30 +6,41 @@ import './index.css'
 const App = () => {
   const [cards, setCards] = useState([])
   const [flipClass, setFlipClass] = useState([])
-  const [selectedNumber, setSelectedNumber] = useState([])
+  const [selectedNumber, setSelectedNumber] = useState({})
   const [foundMatch, setFoundMatch] = useState([])
   const [moves, setMoves] = useState(0)
+
   const randomNumber = range => {
     return Math.floor(Math.random() * (range / 2) + 1)
   }
 
-  // po nacisnieciu 2 razy w ta sama karet i tak to akceptuje - do zmiany
-  const flip = (e, i) => {
-    if (flipClass.length < 2) {
-      setFlipClass(flipClass.concat(i))
-      if (selectedNumber.length === 0) {
-        setSelectedNumber(selectedNumber.concat(e))
-      } else if (!selectedNumber.includes(e)) {
+  useEffect(() => {
+    if (foundMatch.length === 10) {
+      window.confirm('Wygrales')
+      setFoundMatch([])
+      shuffleCards(20)
+    }
+  }, [foundMatch])
+
+  const flip = (value, index) => {
+    if (flipClass.length < 2 && !flipClass.includes(index)) {
+      setFlipClass(flipClass.concat(index))
+      if (!selectedNumber.hasOwnProperty('index')) {
+        setSelectedNumber({ index, value })
+      } else if (
+        selectedNumber.index !== index &&
+        selectedNumber.value === value
+      ) {
+        setFoundMatch(foundMatch.concat(value))
+        setFlipClass([])
+        setSelectedNumber({})
+      } else if (selectedNumber.value !== value) {
         setTimeout(() => {
           setFlipClass([])
-          setSelectedNumber([])
+          setSelectedNumber({})
         }, 1500)
-      } else if (selectedNumber.includes(e)) {
-        setFoundMatch(foundMatch.concat(e))
-        setFlipClass([])
-        setSelectedNumber([])
       }
-      setMoves(moves + 0.5)
+      setMoves(moves + 1)
     }
   }
 
@@ -48,7 +59,7 @@ const App = () => {
     console.log(x)
     setCards(x)
   }
-  console.log(moves)
+
   return (
     <div className='App'>
       <button onClick={() => shuffleCards(20)}>Shuffle Cards</button>
