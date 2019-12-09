@@ -24,10 +24,8 @@ const App = () => {
   }, [foundMatch, cardNumber])
 
   const handleCloseModal = () => {
-    console.log('handleCloseModal')
-    setFoundMatch([])
-    setShowModal(false)
     shuffleCards(cardNumber)
+    setShowModal(false)
   }
 
   const flip = (value, index) => {
@@ -43,9 +41,11 @@ const App = () => {
         selectedNumber.index !== index &&
         selectedNumber.value === value
       ) {
-        setFoundMatch(foundMatch.concat(value))
-        setFlipClass([])
-        setSelectedNumber({})
+        setTimeout(() => {
+          setFoundMatch(foundMatch.concat(value))
+          setFlipClass([])
+          setSelectedNumber({})
+        }, 500)
       } else if (selectedNumber.value !== value) {
         setTimeout(() => {
           setFlipClass([])
@@ -57,6 +57,8 @@ const App = () => {
   }
 
   const shuffleCards = range => {
+    setFlipClass([])
+    setFoundMatch([])
     setMoves(0)
     let x = []
     for (let i = 0; i < range; i++) {

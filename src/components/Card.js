@@ -3,8 +3,14 @@ import question from './question-solid.svg'
 
 const Card = ({ value, flipClass, onClick, index, foundMatch }) => {
   let x = 'flip-card-inner'
-  if (flipClass.includes(index) || foundMatch.includes(value))
+  const showHideCover = foundMatch.includes(value)
+    ? 'covered display-block'
+    : 'display-none'
+  if (flipClass.includes(index)) {
     x = 'flip-card-inner flip'
+  } else if (foundMatch.includes(value)) {
+    x = 'flip-card-inner flip'
+  }
   return (
     <div onClick={() => onClick(value, index)} className='card-container'>
       <div className={x}>
@@ -14,7 +20,10 @@ const Card = ({ value, flipClass, onClick, index, foundMatch }) => {
           </div>
         </div>
         <div className='flip-card-back'>
-          <div className='card-content'>{value}</div>
+          <div className='card-content'>
+            <span className={showHideCover}></span>
+            <img src={`/images/${value}.png`} alt='emotikon'></img>
+          </div>
         </div>
       </div>
     </div>
