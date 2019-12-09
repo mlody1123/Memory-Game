@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Cards from './components/Cards'
 import Statistics from './components/Statistics'
+import Modal from './components/Modal'
 import './index.css'
 
 const App = () => {
@@ -9,18 +10,25 @@ const App = () => {
   const [selectedNumber, setSelectedNumber] = useState({})
   const [foundMatch, setFoundMatch] = useState([])
   const [moves, setMoves] = useState(0)
+  const [showModal, setShowModal] = useState(false)
+  const [cardNumber, setCardNumber] = useState(4)
 
   const randomNumber = range => {
     return Math.floor(Math.random() * (range / 2) + 1)
   }
 
   useEffect(() => {
-    if (foundMatch.length === 10) {
-      window.confirm('Wygrales')
-      setFoundMatch([])
-      shuffleCards(20)
+    if (foundMatch.length === cardNumber / 2) {
+      setShowModal(true)
     }
-  }, [foundMatch])
+  }, [foundMatch, cardNumber])
+
+  const handleCloseModal = () => {
+    console.log('handleCloseModal')
+    setFoundMatch([])
+    setShowModal(false)
+    shuffleCards(cardNumber)
+  }
 
   const flip = (value, index) => {
     if (flipClass.length < 2 && !flipClass.includes(index)) {
@@ -62,7 +70,13 @@ const App = () => {
 
   return (
     <div className='App'>
-      <button onClick={() => shuffleCards(20)}>Shuffle Cards</button>
+      <button onClick={() => shuffleCards(cardNumber)}>Shuffle Cards</button>
+      <Modal
+        title='You Win'
+        content='Congratulation'
+        show={showModal}
+        handleCloseModal={handleCloseModal}
+      />
       <Cards
         cards={cards}
         flip={flip}

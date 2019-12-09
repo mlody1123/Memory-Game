@@ -52,6 +52,37 @@
   justify-content: center;
 }
 
+.modal-container {
+  position: fixed;
+  padding-top: 40%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.display-none {
+  display: none;
+}
+.display-block {
+  display: block;
+}
+
+.modal {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.modal h1 {
+  text-align: center;
+}
+
 @media (max-width: 800px) {
   .cards-container {
     width: 85vw;
