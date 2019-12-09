@@ -1,6 +1,15 @@
+.App {
+  height: 100vh;
+}
+
+.header h1 {
+  text-align: center;
+}
+
 .cards-container {
+  height: 70vh;
   padding: 20px;
-  width: 50vw;
+  width: 60vw;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -9,13 +18,20 @@
 
 .card-container {
   background-color: transparent;
+  padding: 10px;
   width: 20%;
-  height: 20vh;
+  height: 18%;
   perspective: 1000px;
 }
 
 .flip {
   transform: rotateY(180deg);
+}
+
+.flip-card-front {
+  background: #373b44;
+  background: -webkit-linear-gradient(to right, #4286f4, #373b44);
+  background: linear-gradient(to right, #4286f4, #373b44);
 }
 
 .flip-card-inner {
@@ -47,14 +63,17 @@
 .card-content {
   height: 100%;
   display: flex;
-  font-size: 0.7rem;
   align-items: center;
   justify-content: center;
 }
 
+.icon img {
+  width: 40%;
+  max-height: 80%;
+}
+
 .modal-container {
   position: fixed;
-  padding-top: 40%;
   z-index: 1;
   left: 0;
   top: 0;
@@ -73,10 +92,24 @@
 
 .modal {
   background-color: #fefefe;
-  margin: auto;
+  margin: 10% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: 1px solid #21252986;
+  border-radius: 5px;
+  width: 60vw;
+  animation-name: modal;
+  animation-duration: 0.6s;
+}
+
+@keyframes modal {
+  from {
+    margin: -20% auto;
+    opacity: 0.5;
+  }
+  to {
+    margin: 10% auto;
+    opacity: 1;
+  }
 }
 
 .modal h1 {
@@ -89,9 +122,7 @@
   }
 
   .card-container {
-    padding: 2px 4px;
-
+    padding: 5px;
     width: 20%;
-    height: 15vh;
   }
 }

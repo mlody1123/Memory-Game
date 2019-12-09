@@ -1,4 +1,5 @@
 import React from 'react'
+import question from './question-solid.svg'
 
 const Card = ({ value, flipClass, onClick, index, foundMatch }) => {
   let x = 'flip-card-inner'
@@ -9,7 +10,7 @@ const Card = ({ value, flipClass, onClick, index, foundMatch }) => {
       <div className={x}>
         <div className='flip-card-front'>
           <div className='icon'>
-            <i className='fas fa-question fa-4x'></i>
+            <img src={question} alt='question mark' />
           </div>
         </div>
         <div className='flip-card-back'>

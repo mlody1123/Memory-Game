@@ -31,7 +31,11 @@ const App = () => {
   }
 
   const flip = (value, index) => {
-    if (flipClass.length < 2 && !flipClass.includes(index)) {
+    if (
+      flipClass.length < 2 &&
+      !flipClass.includes(index) &&
+      !foundMatch.includes(value)
+    ) {
       setFlipClass(flipClass.concat(index))
       if (!selectedNumber.hasOwnProperty('index')) {
         setSelectedNumber({ index, value })
@@ -70,7 +74,11 @@ const App = () => {
 
   return (
     <div className='App'>
+      <div className='header'>
+        <h1>Match Card Game</h1>
+      </div>
       <button onClick={() => shuffleCards(cardNumber)}>Shuffle Cards</button>
+      <Statistics moves={moves} />
       <Modal
         title='You Win'
         content='Congratulation'
@@ -83,7 +91,6 @@ const App = () => {
         flipClass={flipClass}
         foundMatch={foundMatch}
       />
-      <Statistics moves={moves} />
     </div>
   )
 }
