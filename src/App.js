@@ -12,10 +12,18 @@ const App = () => {
   const [moves, setMoves] = useState(0)
   const [showModal, setShowModal] = useState(false)
   const [cardNumber, setCardNumber] = useState(4)
+  const [time, setTime] = useState(0)
 
-  const randomNumber = range => {
-    return Math.floor(Math.random() * (range / 2) + 1)
-  }
+  useEffect(() => {
+    if (moves >= 1 && foundMatch.length !== cardNumber / 2) {
+      const startTime = setInterval(() => {
+        setTime(time + 1)
+      }, 1000)
+      return () => {
+        clearInterval(startTime)
+      }
+    }
+  }, [time, moves, foundMatch, cardNumber])
 
   useEffect(() => {
     if (foundMatch.length === cardNumber / 2) {
@@ -23,7 +31,12 @@ const App = () => {
     }
   }, [foundMatch, cardNumber])
 
+  const randomNumber = range => {
+    return Math.floor(Math.random() * (range / 2) + 1)
+  }
+
   const handleCloseModal = () => {
+    setTime(0)
     shuffleCards(cardNumber)
     setShowModal(false)
   }
@@ -34,6 +47,7 @@ const App = () => {
       !flipClass.includes(index) &&
       !foundMatch.includes(value)
     ) {
+      setMoves(moves + 1)
       setFlipClass(flipClass.concat(index))
       if (!selectedNumber.hasOwnProperty('index')) {
         setSelectedNumber({ index, value })
@@ -52,7 +66,6 @@ const App = () => {
           setSelectedNumber({})
         }, 1500)
       }
-      setMoves(moves + 1)
     }
   }
 
@@ -74,13 +87,14 @@ const App = () => {
     setCards(x)
   }
 
+  console.log(time)
   return (
     <div className='App'>
       <div className='header'>
         <h1>Match Card Game</h1>
       </div>
       <button onClick={() => shuffleCards(cardNumber)}>Shuffle Cards</button>
-      <Statistics moves={moves} />
+      <Statistics moves={moves} time={time} />
       <Modal
         title='You Win'
         content='Congratulation'
