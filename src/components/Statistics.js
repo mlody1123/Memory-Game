@@ -19,9 +19,13 @@ const Statistics = ({ moves, time }) => {
       )
   }
   return (
-    <div>
-      <p>Number of moves: {moves}</p>
-      <p>Time: {timeToMinutes()}</p>
+    <div className='statistic'>
+      <p>
+        <b>Number of moves:</b> {Math.floor(moves)}
+      </p>
+      <p>
+        <b>Time:</b> {timeToMinutes()}
+      </p>
     </div>
   )
 }

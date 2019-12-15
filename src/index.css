@@ -1,5 +1,7 @@
 .App {
-  height: 100vh;
+  height: 90vh;
+  width: 60vw;
+  margin: 0 auto;
 }
 
 .header h1 {
@@ -7,9 +9,8 @@
 }
 
 .cards-container {
-  height: 70vh;
+  height: 70%;
   padding: 20px;
-  width: 60vw;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -20,7 +21,7 @@
   background-color: transparent;
   padding: 10px;
   width: 20%;
-  height: 18%;
+  height: 15%;
   perspective: 1000px;
 }
 
@@ -80,7 +81,6 @@
 }
 
 .icon img {
-  width: 40%;
   max-height: 80%;
 }
 
@@ -124,12 +124,67 @@
   }
 }
 
-.modal h1 {
+.modal {
   text-align: center;
 }
 
+.modal-content {
+  width: 350px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.modal .statistic {
+  display: block;
+  width: 350px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.landing-container {
+  height: 98vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing {
+  max-width: 50%;
+  text-align: center;
+}
+
+.landing h1 {
+  margin-bottom: 2px;
+}
+
+.landing p {
+  margin-top: 2px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  background-color: royalblue;
+  color: white;
+}
+
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.statistic {
+  display: flex;
+  justify-content: space-around;
+}
+
 @media (max-width: 800px) {
-  .cards-container {
+  .App {
     width: 85vw;
   }
 
