@@ -18,15 +18,14 @@ const Game = () => {
   })
 
   useEffect(() => {
-    if (moves >= 0.5 && foundMatch.length !== cardNumber / 2) {
-      const startTime = setInterval(() => {
-        setTime(time + 1)
-      }, 1000)
-      return () => {
-        clearInterval(startTime)
-      }
+    if (foundMatch.length === 10) return
+    const startTime = setInterval(() => {
+      setTime(time + 1)
+    }, 1000)
+    return () => {
+      clearInterval(startTime)
     }
-  }, [time, moves, foundMatch, cardNumber])
+  }, [time, foundMatch])
 
   useEffect(() => {
     if (foundMatch.length === cardNumber / 2) {
