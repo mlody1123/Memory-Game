@@ -18,7 +18,7 @@ const Game = () => {
   })
 
   useEffect(() => {
-    if (moves >= 1 && foundMatch.length !== cardNumber / 2) {
+    if (moves >= 0.5 && foundMatch.length !== cardNumber / 2) {
       const startTime = setInterval(() => {
         setTime(time + 1)
       }, 1000)
