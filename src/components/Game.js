@@ -72,7 +72,7 @@ const Game = () => {
         setTimeout(() => {
           setFlipClass([])
           setSelectedNumber({})
-        }, 1500)
+        }, 1000)
       }
     }
   }
@@ -94,7 +94,7 @@ const Game = () => {
       const number = randomNumber(tmpCards, range)
       tmpCards.push(number)
     }
-    console.log(tmpCards)
+
     setCards(tmpCards)
   }
 
