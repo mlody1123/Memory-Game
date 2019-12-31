@@ -10,22 +10,23 @@ const Game = () => {
   const [foundMatch, setFoundMatch] = useState([])
   const [moves, setMoves] = useState(0)
   const [showModal, setShowModal] = useState(false)
-  const [cardNumber, setCardNumber] = useState(20)
   const [time, setTime] = useState(0)
+
+  const cardNumber = 20
 
   useEffect(() => {
     if (cards.length === 0) shuffleCards(cardNumber)
   })
 
   useEffect(() => {
-    if (foundMatch.length === 10) return
+    if (showModal) return
     const startTime = setInterval(() => {
-      setTime(time + 1)
+      setTime(time => time + 1)
     }, 1000)
     return () => {
       clearInterval(startTime)
     }
-  }, [time, foundMatch])
+  }, [showModal])
 
   useEffect(() => {
     if (foundMatch.length === cardNumber / 2) {
