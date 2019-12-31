@@ -1,7 +1,7 @@
-### Demo
-  If u want tu try your memory u can use this link. Have fun ! :)
-  URL: http://mighty-cliffs-55332.herokuapp.com/
-  
+## Demo
+  If u want tu try your memory u can use this link 
+  [Memory Game](http://mighty-cliffs-55332.herokuapp.com/) <br />
+  Have fun ! :)
 
 
 
